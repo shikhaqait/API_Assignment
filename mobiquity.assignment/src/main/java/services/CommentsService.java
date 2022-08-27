@@ -25,5 +25,10 @@ public class CommentsService {
 		return commentData;
 	}
 	
+	public CommentsDataResponse[] getAllComments() {
+		String commResp = GetRequest.get(Variables.getBaseURL() + COMMENT_PATH);
+		CommentsDataResponse[] commentData = JsonPath.parse(commResp).read("$", CommentsDataResponse[].class);
+		return commentData;
+	}	
 
 }

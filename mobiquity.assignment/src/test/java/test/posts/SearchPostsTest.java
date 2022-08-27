@@ -17,14 +17,14 @@ public class SearchPostsTest extends BaseTest {
 	}
 
 	@Test
-	public void verifySearchPostsStatusCode() {
-		softassert.assertEquals(postService.getPostsStatusCode(), 200);
+	public void verifyPostsStatusCode() {
+		softassert.assertEquals(postService.getPostsStatusCode(), 200, "Invalid status code");
 		softassert.assertAll();
 	}
 
 	@Test
-	public void verifyPostIds() {
-		softassert.assertTrue(postService.getAllPostsIdofUser(new UserService().getUserData("Delphine").getId()).size()>1);
+	public void verifySpecificUserPostIds() {
+		softassert.assertTrue(postService.getAllPostsIdofUser(new UserService().getUserDetails("Delphine").getId()).size()>1, "User has no posts");
 		softassert.assertAll();
 	}
 

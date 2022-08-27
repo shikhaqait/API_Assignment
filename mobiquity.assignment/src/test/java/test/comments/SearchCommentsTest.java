@@ -7,6 +7,7 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
 import objects.comments.CommentsDataResponse;
+import objects.users.UserDataResponse;
 import services.CommentsService;
 import services.PostService;
 import services.UserService;
@@ -29,11 +30,11 @@ public class SearchCommentsTest extends BaseTest {
 	}
 
 	@Test
-	public void verifyCommentEmailid() {
+	public void verifyCommentEmailidFormat() {
 		String useName = "Delphine";
 		
 		List<Integer> postids = new PostService()
-				.getAllPostsIdofUser(new UserService().getUserData(useName).getId());
+				.getAllPostsIdofUser(new UserService().getUserDetails(useName).getId());
 		for (Integer post_id : postids) {
 			CommentsDataResponse[] comments = commentsService.getPostsSpecificComments(post_id);
 			for (CommentsDataResponse comment : comments) {
@@ -45,6 +46,22 @@ public class SearchCommentsTest extends BaseTest {
 			
 		}
 		softassert.assertAll();
+	}
+	
+	@Test
+	public void verifyCommentEmailIdInUserDetailServer() {
+		CommentsDataResponse[] postComments = commentsService.getAllComments();
+		for (CommentsDataResponse comment : postComments) {
+			UserDataResponse[] userAccount = new UserService().geAllUserDataForEmail(comment.getEmail());
+			softassert.assertTrue(userAccount.length>0,"the owner of comment"+comment.getEmail()+" did not have a valid account in user db");
+			if(userAccount.length>0) {
+				Reporter.log("the owner of comment "+comment.getEmail()+" has a valid account in user db",true);
+			}else {
+				Reporter.log("the owner of comment "+comment.getEmail()+" did not have a valid account in user db",true);
+			}
+		}
+		softassert.assertAll();
+
 	}
 
 }
