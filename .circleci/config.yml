@@ -26,8 +26,14 @@ jobs:
       - run:
           name: Test
           command: mvn test -f mobiquity.assignment/pom.xml
+      - store_artifacts:
+          path: target/surefire-reports
+          destination: tr1
+      - store_artifacts:
+          path: target/logs.log
+          destination: tr2     
       - store_test_results:
-          path: mobiquity.assignment/target
+          path: mobiquity.assignment/target/surefire-reports
 
 # Invoke jobs via workflows
 # See: https://circleci.com/docs/2.0/configuration-reference/#workflows
