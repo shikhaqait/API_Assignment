@@ -1,24 +1,25 @@
 package test.users;
 
-import org.testng.Assert;
+import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
-
-import objects.users.UserDataResponse;
 import services.UserService;
+import test.BaseTest;
 
-public class SearchUsersTest extends UserService {
+public class SearchUsersTest extends BaseTest {
+	
+	private UserService userService;
+	
+	@BeforeClass
+	public void setSession() {
+		userService = new UserService();
+	}
 
 	@Test
 	public void verifySearchUserStatusCode() {
-		Assert.assertEquals(getUserStatusCode(), 200);
+		softassert.assertEquals(userService.getUserStatusCode(), 200);
+		softassert.assertAll();
+		
 	}
 
-	@Test
-	public void verifyUserId() {
-		UserDataResponse user = getUserData("Delphine");
-		int id = user.getId();
-		
-		System.out.println("****"+id);
-	}
 
 }

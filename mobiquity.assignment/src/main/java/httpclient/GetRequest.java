@@ -19,7 +19,6 @@ public class GetRequest {
 	}
 
 	public static int getResponseCode(String url, Map<String, String> parameter) {
-		System.out.println("URL and PARAMETER ::: " + url + "  " + parameter);
 		return given().queryParams(parameter).when().get(url).then().extract().response().getStatusCode();
 	}
 
