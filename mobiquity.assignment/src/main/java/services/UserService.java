@@ -8,6 +8,7 @@ import com.jayway.jsonpath.JsonPath;
 
 import constant.Variables;
 import httpclient.GetRequest;
+import objects.users.UserDataResponse;
 
 public class UserService {
 
@@ -17,12 +18,12 @@ public class UserService {
 		return GetRequest.getResponseCode(Variables.getBaseURL() + USER_PATH, new HashMap<String, String>());
 	}
 
-	public int getUserId(String userName) {
+	public UserDataResponse getUserData(String userName) {
 		Map<String, String> user = new HashMap<String, String>();
 		user.put("username", userName);
 		String respBody = GetRequest.get(Variables.getBaseURL() + USER_PATH, user);
-		List<Integer> list = JsonPath.parse(respBody).read("$.*.id");
-		return list.get(0);
+		UserDataResponse[] userData = JsonPath.parse(respBody).read("$", UserDataResponse[].class);
+		return userData[0];
 
 	}
 
