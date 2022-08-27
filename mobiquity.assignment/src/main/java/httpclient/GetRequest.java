@@ -7,7 +7,6 @@ import java.util.Map;
 import io.restassured.response.Response;
 
 public class GetRequest {
-	
 
 	public static String get(String url) {
 		System.out.println("Inside Get Request" + url);
@@ -15,16 +14,13 @@ public class GetRequest {
 		return response.body().asString();
 	}
 
-	public static String get(String url, Map<String,String> parameter) {
+	public static String get(String url, Map<String, String> parameter) {
 		return given().queryParams(parameter).when().get(url).then().extract().response().getBody().asString();
 	}
-	
-	public static int getResponseCode(String url,Map<String,String> parameter) {
-		System.out.println("URL and PARAMETER ::: "+url+"  "+parameter);
+
+	public static int getResponseCode(String url, Map<String, String> parameter) {
+		System.out.println("URL and PARAMETER ::: " + url + "  " + parameter);
 		return given().queryParams(parameter).when().get(url).then().extract().response().getStatusCode();
 	}
-	
-	
-	
-	
+
 }
