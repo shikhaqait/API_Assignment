@@ -1,0 +1,6 @@
+{
+	"baseurl": "https://jsonplaceholder.typicode.com/",
+	"user_api": "/users",
+	"posts_api": "/posts",
+	"comments_api": "/comment"
+}

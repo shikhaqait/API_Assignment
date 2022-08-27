@@ -1,5 +1,0 @@
-baseurl: https://jsonplaceholder.typicode.com/
-
-user_api: https://jsonplaceholder.typicode.com/users
-posts_api: https://jsonplaceholder.typicode.com/posts
-comments_api: https://jsonplaceholder.typicode.com/comments
