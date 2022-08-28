@@ -53,7 +53,7 @@ public class SearchCommentsTest extends BaseTest {
 	public void verifyCommentEmailIdInUserDetailServer() {
 		CommentsDataResponse[] postComments = commentsService.getAllComments();
 		for (CommentsDataResponse comment : postComments) {
-			UserDataResponse[] userAccount = new UserService().geAllUserDataForEmail(comment.getEmail());
+			UserDataResponse[] userAccount = new UserService().getAllUserDataForEmail(comment.getEmail());
 			softassert.assertTrue(userAccount.length > 0,
 					"the owner of comment" + comment.getEmail() + " did not have a valid account in user db");
 			if (userAccount.length > 0) {
@@ -65,6 +65,14 @@ public class SearchCommentsTest extends BaseTest {
 		}
 		softassert.assertAll();
 
+	}
+	
+	@Test
+	public void verifyCommentSearchWithInavalidQueryParam() {
+		String[] queryParam = {"comment", "absas"};
+		softassert.assertEquals(commentsService.getAllComments(queryParam[0],queryParam[1]).length, 0,
+				"Noexisting query param "+queryParam[0]+"="+queryParam[1]+" comment search has given serarch results");
+		softassert.assertAll();
 	}
 
 }

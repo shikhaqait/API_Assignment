@@ -29,8 +29,16 @@ public class SearchUsersTest extends BaseTest {
 
 	@Test
 	public void verifyValidEmailId() {
-		softassert.assertEquals(userService.geAllUserDataForEmail("Sincere@april.biz").length, 1,
+		softassert.assertEquals(userService.getAllUserDataForEmail("Sincere@april.biz").length, 1,
 				"Searched user is not valid");
+		softassert.assertAll();
+	}
+	
+	@Test
+	public void verifyUserSearchWithInavalidQueryParam() {
+		String[] queryParam = {"xyz", "absas"};
+		softassert.assertEquals(userService.geAllUserData(queryParam[0],queryParam[1]).length, 0,
+				"Noexisting query param "+queryParam[0]+"="+queryParam[1]+" user search has given serarch results");
 		softassert.assertAll();
 	}
 

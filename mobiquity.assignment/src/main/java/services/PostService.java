@@ -29,11 +29,7 @@ public class PostService {
 	 * @return all data of posts related to that user id
 	 */
 	public PostsDataResponse[] getUserSpecificPosts(int userid) {
-		Map<String, String> param_id = new HashMap<String, String>();
-		param_id.put("userId", String.valueOf(userid));
-		String postResp = GetRequest.get(Variables.getBaseURL() + POST_PATH, param_id);
-		PostsDataResponse[] postData = JsonPath.parse(postResp).read("$", PostsDataResponse[].class);
-		return postData;
+		return getAllPosts("userId",String.valueOf(userid));
 	}
 
 	/**
@@ -47,6 +43,28 @@ public class PostService {
 			postId.add(post.getId());
 		}
 		return postId;
+	}
+	
+	/**
+	 * Get all value based upon post query paramters
+	 * @param queryParams
+	 * @return
+	 */
+	private PostsDataResponse[] getAllPosts(Map<String,String> queryParams) {
+		String postResp = GetRequest.get(Variables.getBaseURL() + POST_PATH, queryParams);
+		return JsonPath.parse(postResp).read("$", PostsDataResponse[].class);
+	}
+	
+	/**
+	 * Give all post based on key values
+	 * @param queryKey
+	 * @param queryValue
+	 * @return
+	 */
+	public PostsDataResponse[] getAllPosts(String queryKey,String queryValue) {
+		Map<String, String> params = new HashMap<String, String>();
+		params.put(queryKey, String.valueOf(queryValue));
+		return getAllPosts(params);
 	}
 
 }

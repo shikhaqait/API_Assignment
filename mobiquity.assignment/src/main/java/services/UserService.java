@@ -23,9 +23,7 @@ public class UserService {
 	 * To get all users details
 	 */
 	public UserDataResponse[] getAllUsersDetails() {
-		String respBody = GetRequest.get(Variables.getBaseURL() + USER_PATH);
-		UserDataResponse[] userData = JsonPath.parse(respBody).read("$", UserDataResponse[].class);
-		return userData;
+		return getAllUsers(new HashMap<String,String>());
 	}
 
 	/**
@@ -39,20 +37,24 @@ public class UserService {
 	 * get all details of users with specific username 
 	 */
 	public UserDataResponse[] geAllUserData(String userName) {
-		Map<String, String> user = new HashMap<String, String>();
-		user.put("username", userName);
-		return getAllUsers(user);
+		return geAllUserData("username", userName);
 	}
 
 	/**
+	 * get all details of users with given query parameter
+	 */
+	public UserDataResponse[] geAllUserData(String paramkey, String paramValue) {
+		Map<String, String> user = new HashMap<String, String>();
+		user.put(paramkey, paramValue);
+		return getAllUsers(user);
+	}
+	/**
 	 * Get Email ids of all users
 	 */
-	public UserDataResponse[] geAllUserDataForEmail(String email) {
-		Map<String, String> emailid = new HashMap<String, String>();
-		emailid.put("email", email);
-		return getAllUsers(emailid);
+	public UserDataResponse[] getAllUserDataForEmail(String email) {
+		return geAllUserData("email", email);
 	}
-
+	
 	/**
 	 * Private method to get user detail on the basis of query parameter passed
 	 */

@@ -27,20 +27,25 @@ public class CommentsService {
 	 * @return all comment related to that post id
 	 */
 	public CommentsDataResponse[] getSpecificPostComments(int postid) {
-		Map<String, String> param_postsid = new HashMap<String, String>();
-		param_postsid.put("postId", String.valueOf(postid));
-		String commResp = GetRequest.get(Variables.getBaseURL() + COMMENT_PATH, param_postsid);
-		CommentsDataResponse[] commentData = JsonPath.parse(commResp).read("$", CommentsDataResponse[].class);
-		return commentData;
+		return getAllComments("postId", String.valueOf(postid));
 	}
 
 	/**
 	 * To get all comments on all posts
 	 */
 	public CommentsDataResponse[] getAllComments() {
-		String commResp = GetRequest.get(Variables.getBaseURL() + COMMENT_PATH);
-		CommentsDataResponse[] commentData = JsonPath.parse(commResp).read("$", CommentsDataResponse[].class);
-		return commentData;
+		return getAllComments(new HashMap<String, String>());
+	}
+	
+	private CommentsDataResponse[] getAllComments(Map<String, String> param_postsid) {
+		String commResp = GetRequest.get(Variables.getBaseURL() + COMMENT_PATH, param_postsid);
+		return JsonPath.parse(commResp).read("$", CommentsDataResponse[].class);
+	}
+	
+	public CommentsDataResponse[] getAllComments(String queryKey,String queryValue) {
+		Map<String, String> param_postsid = new HashMap<String, String>();
+		param_postsid.put(queryKey, String.valueOf(queryValue));
+		return getAllComments(param_postsid);
 	}
 
 }
