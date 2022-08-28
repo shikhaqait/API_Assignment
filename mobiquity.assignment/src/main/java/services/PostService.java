@@ -14,11 +14,20 @@ import objects.posts.PostsDataResponse;
 public class PostService {
 
 	private final String POST_PATH = "/posts";
-
+	
+	/**
+	 *  To verify status code return after successful request
+	 * @return status code
+	 */	
 	public int getPostsStatusCode() {
 		return GetRequest.getResponseCode(Variables.getBaseURL() + POST_PATH, new HashMap<String, String>());
 	}
 
+	/**
+	 * To get posts of specific users
+	 * pass user id (fetch user id from '/users' endpoint')
+	 * @return all data of posts related to that user id
+	 */
 	public PostsDataResponse[] getUserSpecificPosts(int userid) {
 		Map<String, String> param_id = new HashMap<String, String>();
 		param_id.put("userId", String.valueOf(userid));
@@ -27,6 +36,11 @@ public class PostService {
 		return postData;
 	}
 
+	/**
+	 * To get post id of specific users
+	 * pass user id (fetch user id from '/users' endpoint')
+	 * @return all postids for specific user
+	 */
 	public List<Integer> getAllPostsIdofUser(int userid) {
 		List<Integer> postId = new ArrayList<Integer>();
 		for (PostsDataResponse post : getUserSpecificPosts(userid)) {

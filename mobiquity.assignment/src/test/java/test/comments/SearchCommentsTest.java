@@ -36,7 +36,7 @@ public class SearchCommentsTest extends BaseTest {
 		List<Integer> postids = new PostService()
 				.getAllPostsIdofUser(new UserService().getUserDetails(useName).getId());
 		for (Integer post_id : postids) {
-			CommentsDataResponse[] comments = commentsService.getPostsSpecificComments(post_id);
+			CommentsDataResponse[] comments = commentsService.getSpecificPostComments(post_id);
 			for (CommentsDataResponse comment : comments) {
 				softassert.assertTrue(ValidateEmail.emailValidator(comment.getEmail()),
 						"Email is invalid " + comment.getEmail() + " for comment " + comment.getId() + " on post "
