@@ -32,7 +32,7 @@ public class SearchPostsTest extends BaseTest {
 	
 
 	@Test
-	public void verifyCommentSearchWithInavalidQueryParam() {
+	public void verifyPostsSearchWithInavalidQueryParam() {
 		String[] queryParam = {"comment", "absas"};
 		softassert.assertEquals(postService.getAllPosts(queryParam[0],queryParam[1]).length, 0,
 				"Noexisting query param "+queryParam[0]+"="+queryParam[1]+" post search has given serarch results");
