@@ -11,17 +11,18 @@ import io.restassured.filter.log.ResponseLoggingFilter;
 public class RestLogs {
 
 	public static void setLog() throws FileNotFoundException {
-		if(System.getProperty("debug")==null) {
-			File file =  new File(System.getProperty("user.dir")+File.separator+"target"+File.separator+"logs.log");
-			if(file.exists()) {
+		if (System.getProperty("debug") == null) {
+			File file = new File(
+					System.getProperty("user.dir") + File.separator + "target" + File.separator + "logs.log");
+			if (file.exists()) {
 				file.delete();
 			}
 			PrintStream print = new PrintStream(file);
 			RestAssured.filters(new RequestLoggingFilter(print), new ResponseLoggingFilter(print));
-		}else {
+		} else {
 			RestAssured.filters(new RequestLoggingFilter(), new ResponseLoggingFilter());
 		}
-		
+
 	}
-	
+
 }

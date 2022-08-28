@@ -8,9 +8,9 @@ import services.UserService;
 import test.BaseTest;
 
 public class SearchPostsTest extends BaseTest {
-	
+
 	private PostService postService;
-	
+
 	@BeforeClass
 	public void setSession() {
 		postService = new PostService();
@@ -24,7 +24,9 @@ public class SearchPostsTest extends BaseTest {
 
 	@Test
 	public void verifySpecificUserPostIds() {
-		softassert.assertTrue(postService.getAllPostsIdofUser(new UserService().getUserDetails("Delphine").getId()).size()>1, "User has no posts");
+		softassert.assertTrue(
+				postService.getAllPostsIdofUser(new UserService().getUserDetails("Delphine").getId()).size() > 1,
+				"User has no posts");
 		softassert.assertAll();
 	}
 

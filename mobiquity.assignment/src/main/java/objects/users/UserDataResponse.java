@@ -1,143 +1,129 @@
 
 package objects.users;
 
-import java.util.HashMap;
-import java.util.Map;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
-@JsonPropertyOrder({
-    "id",
-    "name",
-    "username",
-    "email",
-    "address",
-    "phone",
-    "website",
-    "company"
-})
+@JsonPropertyOrder({ "id", "name", "username", "email", "address", "phone", "website", "company" })
 public class UserDataResponse {
 
-    @JsonProperty("id")
-    private Integer id;
-    @JsonProperty("name")
-    private String name;
-    @JsonProperty("username")
-    private String username;
-    @JsonProperty("email")
-    private String email;
-    @JsonProperty("address")
-    private Address address;
-    @JsonProperty("phone")
-    private String phone;
-    @JsonProperty("website")
-    private String website;
-    @JsonProperty("company")
-    private Company company;
-  
-    @JsonProperty("id")
-    public Integer getId() {
-        return id;
-    }
+	@JsonProperty("id")
+	private Integer id;
+	@JsonProperty("name")
+	private String name;
+	@JsonProperty("username")
+	private String username;
+	@JsonProperty("email")
+	private String email;
+	@JsonProperty("address")
+	private Address address;
+	@JsonProperty("phone")
+	private String phone;
+	@JsonProperty("website")
+	private String website;
+	@JsonProperty("company")
+	private Company company;
 
-    @JsonProperty("id")
-    public void setId(Integer id) {
-        this.id = id;
-    }
+	@JsonProperty("id")
+	public Integer getId() {
+		return id;
+	}
 
-    @JsonProperty("name")
-    public String getName() {
-        return name;
-    }
+	@JsonProperty("id")
+	public void setId(Integer id) {
+		this.id = id;
+	}
 
-    @JsonProperty("name")
-    public void setName(String name) {
-        this.name = name;
-    }
+	@JsonProperty("name")
+	public String getName() {
+		return name;
+	}
 
-    @JsonProperty("username")
-    public String getUsername() {
-        return username;
-    }
+	@JsonProperty("name")
+	public void setName(String name) {
+		this.name = name;
+	}
 
-    @JsonProperty("username")
-    public void setUsername(String username) {
-        this.username = username;
-    }
+	@JsonProperty("username")
+	public String getUsername() {
+		return username;
+	}
 
-    public UserDataResponse withUsername(String username) {
-        this.username = username;
-        return this;
-    }
+	@JsonProperty("username")
+	public void setUsername(String username) {
+		this.username = username;
+	}
 
-    @JsonProperty("email")
-    public String getEmail() {
-        return email;
-    }
+	public UserDataResponse withUsername(String username) {
+		this.username = username;
+		return this;
+	}
 
-    @JsonProperty("email")
-    public void setEmail(String email) {
-        this.email = email;
-    }
+	@JsonProperty("email")
+	public String getEmail() {
+		return email;
+	}
 
-    public UserDataResponse withEmail(String email) {
-        this.email = email;
-        return this;
-    }
+	@JsonProperty("email")
+	public void setEmail(String email) {
+		this.email = email;
+	}
 
-    @JsonProperty("address")
-    public Address getAddress() {
-        return address;
-    }
+	public UserDataResponse withEmail(String email) {
+		this.email = email;
+		return this;
+	}
 
-    @JsonProperty("address")
-    public void setAddress(Address address) {
-        this.address = address;
-    }
+	@JsonProperty("address")
+	public Address getAddress() {
+		return address;
+	}
 
-    public UserDataResponse withAddress(Address address) {
-        this.address = address;
-        return this;
-    }
+	@JsonProperty("address")
+	public void setAddress(Address address) {
+		this.address = address;
+	}
 
-    @JsonProperty("phone")
-    public String getPhone() {
-        return phone;
-    }
+	public UserDataResponse withAddress(Address address) {
+		this.address = address;
+		return this;
+	}
 
-    @JsonProperty("phone")
-    public void setPhone(String phone) {
-        this.phone = phone;
-    }
+	@JsonProperty("phone")
+	public String getPhone() {
+		return phone;
+	}
 
-    @JsonProperty("website")
-    public String getWebsite() {
-        return website;
-    }
+	@JsonProperty("phone")
+	public void setPhone(String phone) {
+		this.phone = phone;
+	}
 
-    @JsonProperty("website")
-    public void setWebsite(String website) {
-        this.website = website;
-    }
+	@JsonProperty("website")
+	public String getWebsite() {
+		return website;
+	}
 
-    @JsonProperty("company")
-    public Company getCompany() {
-        return company;
-    }
+	@JsonProperty("website")
+	public void setWebsite(String website) {
+		this.website = website;
+	}
 
-    @JsonProperty("company")
-    public void setCompany(Company company) {
-        this.company = company;
-    }
+	@JsonProperty("company")
+	public Company getCompany() {
+		return company;
+	}
 
-    public UserDataResponse withCompany(Company company) {
-        this.company = company;
-        return this;
-    }
+	@JsonProperty("company")
+	public void setCompany(Company company) {
+		this.company = company;
+	}
 
-   
+	public UserDataResponse withCompany(Company company) {
+		this.company = company;
+		return this;
+	}
 
 }

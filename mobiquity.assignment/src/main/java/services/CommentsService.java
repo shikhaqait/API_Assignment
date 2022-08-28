@@ -16,7 +16,7 @@ public class CommentsService {
 	public int getCommentStatusCode() {
 		return GetRequest.getResponseCode(Variables.getBaseURL() + COMMENT_PATH, new HashMap<String, String>());
 	}
-	
+
 	public CommentsDataResponse[] getPostsSpecificComments(int postid) {
 		Map<String, String> param_postsid = new HashMap<String, String>();
 		param_postsid.put("postId", String.valueOf(postid));
@@ -24,11 +24,11 @@ public class CommentsService {
 		CommentsDataResponse[] commentData = JsonPath.parse(commResp).read("$", CommentsDataResponse[].class);
 		return commentData;
 	}
-	
+
 	public CommentsDataResponse[] getAllComments() {
 		String commResp = GetRequest.get(Variables.getBaseURL() + COMMENT_PATH);
 		CommentsDataResponse[] commentData = JsonPath.parse(commResp).read("$", CommentsDataResponse[].class);
 		return commentData;
-	}	
+	}
 
 }

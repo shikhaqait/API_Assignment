@@ -14,33 +14,33 @@ import org.testng.asserts.SoftAssert;
 import httpclient.RestLogs;
 
 public class BaseTest {
-	
-	protected SoftAssert softassert; 
+
+	protected SoftAssert softassert;
 
 	@BeforeSuite
 	public void globalSetting() throws FileNotFoundException {
 		RestLogs.setLog();
 	}
-	
+
 	@BeforeClass
 	public void startTestSet() {
-		Reporter.log("****Test set started "+this.getClass().getSimpleName());
+		Reporter.log("****Test set started " + this.getClass().getSimpleName());
 	}
-	
+
 	@BeforeMethod
 	public void startTest(Method method) {
 		softassert = new SoftAssert();
-		Reporter.log("***Test started "+method.getName(),true);
+		Reporter.log("***Test started " + method.getName(), true);
 	}
-	
+
 	@AfterMethod
 	public void endTest(Method method) {
-		Reporter.log("****Test ended "+method.getName(),true);
+		Reporter.log("****Test ended " + method.getName(), true);
 	}
-	
+
 	@AfterClass
 	public void EndTestSet() {
-		Reporter.log("****Test set ended "+this.getClass().getSimpleName());
+		Reporter.log("****Test set ended " + this.getClass().getSimpleName());
 	}
 
 }

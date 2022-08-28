@@ -14,9 +14,9 @@ public class UserService {
 	public int getUserStatusCode() {
 		return GetRequest.getResponseCode(Variables.getBaseURL() + USER_PATH, new HashMap<String, String>());
 	}
-	
+
 	public UserDataResponse[] getAllUsersDetails() {
-		String respBody = GetRequest.get(Variables.getBaseURL()+USER_PATH);
+		String respBody = GetRequest.get(Variables.getBaseURL() + USER_PATH);
 		UserDataResponse[] userData = JsonPath.parse(respBody).read("$", UserDataResponse[].class);
 		return userData;
 	}
@@ -24,24 +24,22 @@ public class UserService {
 	public UserDataResponse getUserDetails(String userName) {
 		return geAllUserData(userName)[0];
 	}
-	
+
 	public UserDataResponse[] geAllUserData(String userName) {
 		Map<String, String> user = new HashMap<String, String>();
 		user.put("username", userName);
 		return getAllUsers(user);
 	}
-	
+
 	public UserDataResponse[] geAllUserDataForEmail(String email) {
 		Map<String, String> emailid = new HashMap<String, String>();
 		emailid.put("email", email);
 		return getAllUsers(emailid);
 	}
-	
+
 	private UserDataResponse[] getAllUsers(Map<String, String> queryParams) {
-		String res =  GetRequest.get(Variables.getBaseURL() + USER_PATH, queryParams);
+		String res = GetRequest.get(Variables.getBaseURL() + USER_PATH, queryParams);
 		return JsonPath.parse(res).read("$", UserDataResponse[].class);
 	}
-	
-	
 
 }
